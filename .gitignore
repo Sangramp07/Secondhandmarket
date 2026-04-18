@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+.npm
+
+# Build output
+dist/
+.next/
+build/
+
+# Environment files — NEVER commit these
+.env
+.env.local
+.env.production
+
+# Uploads (local only - Cloudinary handles this in production)
+backend/uploads/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
