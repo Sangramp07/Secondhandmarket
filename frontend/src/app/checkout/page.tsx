@@ -50,12 +50,12 @@ export default function CheckoutPage() {
 
     try {
       // 1. Get Razorpay key from backend
-      const { data: keyData } = await axios.get('`${process.env.NEXT_PUBLIC_API_URL}/api/payment/key', {
+      const { data: keyData } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/payment/key`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
 
       // 2. Create a Razorpay order on backend
-      const { data: orderData } = await axios.post('`${process.env.NEXT_PUBLIC_API_URL}/api/payment/create-order', {
+      const { data: orderData } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/payment/create-order`, {
         amount: getTotal()
       }, {
         headers: { Authorization: `Bearer ${user?.token}` }
@@ -84,7 +84,7 @@ export default function CheckoutPage() {
               title: item.title
             }));
 
-            await axios.post('`${process.env.NEXT_PUBLIC_API_URL}/api/payment/verify', {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/payment/verify`, {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
         price: item.price,
         title: item.title
       }));
-      await axios.post('`${process.env.NEXT_PUBLIC_API_URL}/api/orders', {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, {
         orderItems,
         shippingAddress: fulfillmentType === 'Pickup' ? 'Self Pickup' : shippingAddress,
         fulfillmentType,

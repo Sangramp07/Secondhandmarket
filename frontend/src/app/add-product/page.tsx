@@ -29,7 +29,7 @@ export default function AddProductPage() {
 
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get('`${process.env.NEXT_PUBLIC_API_URL}/api/categories');
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`);
       setCategories(data);
       if (data.length > 0) setCategory(data[0]._id);
     } catch (err) {
@@ -65,7 +65,7 @@ export default function AddProductPage() {
       for (let i = 0; i < images.length; i++) formData.append('images', images[i]);
     }
     try {
-      await axios.post('`${process.env.NEXT_PUBLIC_API_URL}/api/products', formData, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, formData, {
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user?.token}` },
       });
       router.push('/');
@@ -86,7 +86,7 @@ export default function AddProductPage() {
 
         {/* Page Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-extrabold text-[#002f34]">Post Your Ad</h1>
+          <h1 className="text-3xl font-extrabold text-[#002f34]">Sell Your Product</h1>
           <p className="text-[#406367] mt-1 text-sm">Fill in the details below to list your item for sale.</p>
         </div>
 

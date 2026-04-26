@@ -52,7 +52,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const { data } = await axios.post('`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register', {
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
         ...formData,
         coordinates: coordinates,
       });

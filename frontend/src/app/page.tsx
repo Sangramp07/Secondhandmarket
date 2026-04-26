@@ -30,7 +30,7 @@ function HomeContent() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      let url = '`${process.env.NEXT_PUBLIC_API_URL}/api/products?';
+      let url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?`;
       if (categoryName) {
         url += `categoryName=${encodeURIComponent(categoryName)}&`;
       }
@@ -48,7 +48,7 @@ function HomeContent() {
 
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get('`${process.env.NEXT_PUBLIC_API_URL}/api/categories');
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`);
       setCategories(data);
     } catch (error) {
       console.error('Error fetching categories');

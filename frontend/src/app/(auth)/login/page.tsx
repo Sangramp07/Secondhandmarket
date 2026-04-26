@@ -20,7 +20,7 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
     try {
-      const { data } = await axios.post('`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login', { email, password });
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, { email, password });
       setUser(data);
       router.push('/');
     } catch (err: any) {

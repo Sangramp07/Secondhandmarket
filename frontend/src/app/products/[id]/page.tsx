@@ -31,12 +31,12 @@ export default function ProductDetailsPage() {
   const isInCart = items.some(item => item.product === product?._id);
 
   const getImgSrc = (src: string) =>
-    src.startsWith('http') ? src : `http://localhost:5000${src}`;
+    src.startsWith('http') ? src : `${process.env.NEXT_PUBLIC_API_URL}${src}`;
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${params.id}`);
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${params.id}`);
         setProduct(data);
         setMainImage(data.images?.length > 0
           ? getImgSrc(data.images[0])

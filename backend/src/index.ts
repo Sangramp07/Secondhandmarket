@@ -1,6 +1,10 @@
+import dotenv from 'dotenv';
+
+// Load env vars FIRST before anything else
+dotenv.config();
+
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import path from 'path';
 import { connectDB } from './config/db';
 import authRoutes from './routes/authRoutes';
@@ -8,8 +12,6 @@ import productRoutes from './routes/productRoutes';
 import categoryRoutes from './routes/categoryRoutes';
 import orderRoutes from './routes/orderRoutes';
 import paymentRoutes from './routes/paymentRoutes';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
