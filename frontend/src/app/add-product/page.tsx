@@ -29,7 +29,7 @@ export default function AddProductPage() {
 
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`);
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}/api/categories`);
       setCategories(data);
       if (data.length > 0) setCategory(data[0]._id);
     } catch (err) {
@@ -65,7 +65,7 @@ export default function AddProductPage() {
       for (let i = 0; i < images.length; i++) formData.append('images', images[i]);
     }
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, formData, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}/api/products`, formData, {
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user?.token}` },
       });
       router.push('/');

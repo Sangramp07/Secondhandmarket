@@ -18,7 +18,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const getImageSrc = (src: string) => {
     if (!src) return 'https://via.placeholder.com/400x300?text=No+Image';
     if (src.startsWith('http')) return src; // Cloudinary URL
-    return `${process.env.NEXT_PUBLIC_API_URL}${src}`; // legacy local
+    return `${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}${src}`; // legacy local
   };
 
   const imageUrl = product.images?.length > 0

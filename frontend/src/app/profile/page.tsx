@@ -45,7 +45,7 @@ export default function ProfilePage() {
 
   const fetchProfile = async () => {
     try {
-      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile`, {
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}/api/auth/profile`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
       setName(data.name || '');
@@ -60,7 +60,7 @@ export default function ProfilePage() {
   const fetchMyProducts = async () => {
     setProductsLoading(true);
     try {
-      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/products/myproducts`, {
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}/api/products/myproducts`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
       setMyProducts(data);
@@ -74,7 +74,7 @@ export default function ProfilePage() {
   const fetchOrders = async () => {
     setOrdersLoading(true);
     try {
-      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/orders/myorders`, {
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}/api/orders/myorders`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
       setOrders(data);
@@ -88,7 +88,7 @@ export default function ProfilePage() {
   const handleDeleteProduct = async (id: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`, {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}/api/products/${id}`, {
         headers: { Authorization: `Bearer ${user?.token}` }
       });
       setMyProducts(prev => prev.filter(p => p._id !== id));
@@ -102,7 +102,7 @@ export default function ProfilePage() {
     setProfileLoading(true);
     setProfileMessage('');
     try {
-      const { data } = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/profile`, {
+      const { data } = await axios.put(`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}/api/auth/profile`, {
         name, phone, address, coordinates,
       }, { headers: { Authorization: `Bearer ${user?.token}` } });
       setUser(data);
@@ -255,7 +255,7 @@ export default function ProfilePage() {
                       <div key={product._id} className="flex items-center gap-4 py-4">
                         <div className="w-16 h-16 flex-shrink-0 bg-gray-100 rounded overflow-hidden">
                           {product.images?.[0]
-                            ? <img src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0]}`} alt={product.title} className="w-full h-full object-cover" />
+                            ? <img src={`${process.env.NEXT_PUBLIC_API_URL || 'https://secondhand-product-marketplace.onrender.com'}${product.images[0]}`} alt={product.title} className="w-full h-full object-cover" />
                             : <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">No img</div>
                           }
                         </div>
